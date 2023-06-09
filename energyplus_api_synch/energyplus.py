@@ -1,8 +1,8 @@
 from pathlib import Path
-from platform import system, version
+from platform import system
 from os import environ
 from shutil import copytree
-from subprocess import check_call, CalledProcessError
+from subprocess import check_call, check_output, CalledProcessError
 from tempfile import mkdtemp
 from typing import Optional
 
@@ -21,12 +21,14 @@ class EnergyPlus:
             os = Windows
         elif system() == 'Darwin':
             os = Mac
-        elif system() == 'Linux' and '20.04' in version():
-            os = Ubuntu20
-        elif system() == 'Linux' and '22.04' in version():
-            os = Ubuntu22
-        else:
-            raise Exception("Could not match an Operating System Version, aborting")
+        else:  # system() == 'Linux':
+            lsb_output = check_output(['lsb_release', '-r'])
+            if b'20.04' in lsb_output:
+                os = Ubuntu20
+            elif b'22.04' in lsb_output:
+                os = Ubuntu22
+            else:
+                raise Exception("Could not match an Operating System Version, aborting")
 
         # Handle setting the path to the wget tool
         if 'CI' in environ and system() == 'Windows':
