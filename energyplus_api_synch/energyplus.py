@@ -32,7 +32,7 @@ class EnergyPlus:
 
         # Handle setting the path to the wget tool
         if 'CI' in environ and system() == 'Windows':
-            wget = Path("C:") / "msys64" / "usr" / "bin" / "wget.exe"
+            wget = Path("C:/") / "msys64" / "usr" / "bin" / "wget.exe"
         else:
             wget = "wget"  # assuming it's available on PATH
 
