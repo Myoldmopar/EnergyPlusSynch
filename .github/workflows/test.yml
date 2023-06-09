@@ -9,7 +9,7 @@ jobs:
   unit_tests:
     strategy:
       matrix:
-        os: [ windows-latest, macos-12, ubuntu-20.04, ubuntu-22.04 ]
+        os: [ macos-12, ubuntu-20.04, ubuntu-22.04 ]  # windows-latest once the 7z command line is set up
         ep: [ 22.2, 23.1 ]
     runs-on: ${{ matrix.os }}
     steps:

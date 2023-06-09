@@ -64,7 +64,7 @@ class EnergyPlus:
         temp_extract_dir = mkdtemp()
         temp_extract_path = Path(temp_extract_dir)
         extract_command_line = os.archive_tool.split(' ')
-        extract_command_line.extend([target_download_path, '-C', temp_extract_dir])
+        extract_command_line.extend([target_download_path, '-C', temp_extract_dir])  # TODO: Handle 7zip command line
         try:
             check_call(extract_command_line)
         except CalledProcessError:  # pragma: no cover
