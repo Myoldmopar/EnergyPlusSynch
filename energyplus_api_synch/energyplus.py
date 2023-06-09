@@ -8,10 +8,7 @@ from typing import Optional
 
 from energyplus_api_helpers.import_helper import EPlusAPIHelper
 
-from energyplus_api_synch.configuration import (
-    OperatingSystem as OpSys, EnergyPlusVersion as EpVer,
-    Ubuntu20, Ubuntu22, Windows, Mac
-)
+from energyplus_api_synch.configuration import EnergyPlusVersion as EpVer, Ubuntu20, Ubuntu22, Windows, Mac
 
 
 class EnergyPlus:

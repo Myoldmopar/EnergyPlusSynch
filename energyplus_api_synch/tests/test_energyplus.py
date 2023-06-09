@@ -2,7 +2,7 @@ from pathlib import Path
 from tempfile import mkdtemp
 from unittest import TestCase
 
-from energyplus_api_synch.configuration import Ubuntu20, EnergyPlus231
+from energyplus_api_synch.configuration import EnergyPlus231
 from energyplus_api_synch.energyplus import EnergyPlus
 
 

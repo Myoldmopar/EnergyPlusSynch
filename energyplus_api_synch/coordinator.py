@@ -10,7 +10,7 @@ class Coordinator:
         api_helper = e.get_api_helper()
         api = api_helper.get_api_instance()
         state = api.state_manager.new_state()
-        return_value = api.runtime.run_energyplus(
+        self.eplus_exit_code = api.runtime.run_energyplus(
             state, [
                 '-d',
                 api_helper.get_temp_run_dir(),
