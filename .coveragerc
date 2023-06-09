@@ -1,0 +1,6 @@
+[run]
+source = energyplus_api_synch
+
+[report]
+omit =
+    */path/to/files/to/ignore.py
