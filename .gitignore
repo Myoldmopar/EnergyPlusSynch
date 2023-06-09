@@ -1,5 +1,6 @@
-eplus_install
+eplus_install_*
 .idea
+EnergyPlus*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
