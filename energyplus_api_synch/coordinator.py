@@ -1,4 +1,8 @@
-from energyplus_api_synch.configuration import EnergyPlusVersion, EnergyPlus231
+from os import environ
+
+import click
+
+from energyplus_api_synch.configuration import EnergyPlusVersion, VersionMap
 from energyplus_api_synch.energyplus import EnergyPlus
 
 
@@ -22,7 +26,21 @@ class Coordinator:
         )
 
 
-if __name__ == "__main__":  # pragma: no cover
-    # add a CLI to switch between E+ versions
-    # also respond to the EP_SYNCH_EP_VERSION environment variable too
-    Coordinator(EnergyPlus231)
+@click.command()
+@click.option(
+    "-e", "--energyplus-version",
+    default=None,
+    type=click.Choice(['22.1', '22.2', '23.1'], case_sensitive=False),
+    required=False,
+    help="The EnergyPlus Version to run; can also be set in the EP_SYNCH_EP_VERSION env variable"
+)
+def main(energyplus_version: str):
+    if energyplus_version:  # just use it as it is, click() will validate the entry
+        pass
+    else:  # try getting it from environment variable,
+        energyplus_version = environ.get('EP_SYNCH_EP_VERSION', "23.1")
+    Coordinator(VersionMap[energyplus_version])
+
+
+if __name__ == '__main__':  # pragma: no cover
+    main()

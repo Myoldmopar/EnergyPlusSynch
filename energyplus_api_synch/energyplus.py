@@ -60,11 +60,13 @@ class EnergyPlus:
                     f"Could not download EnergyPlus archive from {full_url} or download to {target_download_path}"
                 )
 
-        # Extract the EnergyPlus archive, first into a temp dir, then grab the EnergyPlus-Blah subdirectory
+        # Extract the EnergyPlus archive, first into a temp dir, then grab the EnergyPlus-Foo subdirectory
         temp_extract_dir = mkdtemp()
         temp_extract_path = Path(temp_extract_dir)
-        extract_command_line = os.archive_tool.split(' ')
-        extract_command_line.extend([target_download_path, '-C', temp_extract_dir])  # TODO: Handle 7zip command line
+        if '7z' in os.archive_tool[0]:
+            extract_command_line = [*os.archive_tool, target_download_path, f"-o{temp_extract_dir}"]
+        else:  # assuming tar
+            extract_command_line = [*os.archive_tool, target_download_path, '-C', temp_extract_dir]
         try:
             check_call(extract_command_line)
         except CalledProcessError:  # pragma: no cover

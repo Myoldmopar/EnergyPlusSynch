@@ -1,4 +1,8 @@
+# core requirements
+click
 energyplus_api_helpers
+
+# only for testing purposes
 nose
 coverage
 coveralls
