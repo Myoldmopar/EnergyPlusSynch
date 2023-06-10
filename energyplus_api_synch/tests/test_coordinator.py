@@ -1,8 +1,9 @@
 from unittest import TestCase
 
-from energyplus_api_synch.coordinator import main as main_coordinator
+from energyplus_api_synch.configuration import EnergyPlus231
+from energyplus_api_synch.coordinator import worker
 
 
 class TestCoordinator(TestCase):
     def test_coordinator(self):
-        main_coordinator()
+        worker(EnergyPlus231)

@@ -1,4 +1,5 @@
 from os import environ
+from typing import Optional
 
 import click
 
@@ -26,6 +27,11 @@ class Coordinator:
         )
 
 
+def worker(energyplus_version_object: EnergyPlusVersion):
+    c = Coordinator(energyplus_version_object)
+    return c.eplus_exit_code
+
+
 @click.command()
 @click.option(
     "-e", "--energyplus-version",
@@ -34,13 +40,13 @@ class Coordinator:
     required=False,
     help="The EnergyPlus Version to run; can also be set in the EP_SYNCH_EP_VERSION env variable"
 )
-def main(energyplus_version: str):
+def main(energyplus_version: Optional[str] = None):  # pragma: no cover  -- only covering the worker() level and below
     if energyplus_version:  # just use it as it is, click() will validate the entry
         pass
     else:  # try getting it from environment variable,
         energyplus_version = environ.get('EP_SYNCH_EP_VERSION', "23.1")
-    Coordinator(VersionMap[energyplus_version])
+    return worker(VersionMap[energyplus_version])
 
 
-if __name__ == '__main__':  # pragma: no cover
+if __name__ == '__main__':  # pragma: no cover  -- only covering the worker() level and below
     main()
