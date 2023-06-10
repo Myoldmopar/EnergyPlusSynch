@@ -10,9 +10,9 @@ class OperatingSystem:
         self.architecture = arch
 
 
-Ubuntu20 = OperatingSystem("Linux", "Ubuntu20.04", ".tar.gz", ["tar", "-xf"])
-Ubuntu22 = OperatingSystem("Linux", "Ubuntu22.04", ".tar.gz", ["tar", "-xf"])
-Mac = OperatingSystem("Darwin", "macOS12.1", ".tar.gz", ["tar", "-xf"])
+Ubuntu20 = OperatingSystem("Linux", "-Ubuntu20.04", ".tar.gz", ["tar", "-xf"])
+Ubuntu22 = OperatingSystem("Linux", "-Ubuntu22.04", ".tar.gz", ["tar", "-xf"])
+Mac = OperatingSystem("Darwin", "-macOS12.1", ".tar.gz", ["tar", "-xf"])
 Windows = OperatingSystem("Windows", "", ".zip", ["7z", "x"])
 
 

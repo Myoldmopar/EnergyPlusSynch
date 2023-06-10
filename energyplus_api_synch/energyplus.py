@@ -46,7 +46,7 @@ class EnergyPlus:
             return
 
         # Download the EnergyPlus archive
-        file_name = f"EnergyPlus-{ep.version}-{ep.sha}-{os.nickname}-{os.with_version}-{os.architecture}"
+        file_name = f"EnergyPlus-{ep.version}-{ep.sha}-{os.nickname}{os.with_version}-{os.architecture}"
         file_name_with_ext = f"{file_name}{os.archive_extension}"
         target_download_path = Path(__file__).parent.parent / file_name_with_ext  # should be in repo root
         if target_download_path.exists():
